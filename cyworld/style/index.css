@@ -132,3 +132,15 @@
     width: 524px;
     height: 472px;
 }
+
+.wrapper__right__header{
+    width: 510px;
+}
+
+.wrapper__right__body{
+    width: 510px;
+    height: 445px;
+    border: 1px solid gray;
+    border-radius: 15px;
+    background-color: white;
+}
