@@ -3,6 +3,7 @@
 <head>
     <title>Game</title>
     <link href="./style/game.css" rel="stylesheet">
+    <script src="./game.js"></script>
 </head>
 <body>
     <div class="wrapper">
@@ -23,7 +24,7 @@
             </div>
             <div class="word__text">
                 <input class="textbox" id="myword" placeholder="단어를 입력하세요.">
-                <button class="search">입력</button>
+                <button class="search" onclick="wordChain()">입력</button>
             </div>
             <div class="word__result" id="result">결과!</div>
         </div>
@@ -35,15 +36,15 @@
             <div class="game__subtitle">
                 버튼을 누르세요.
             </div>
-            <div class="random__numbers">
-                <span class="number">3</span>
-                <span class="number">5</span>
-                <span class="number">10</span>
-                <span class="number">24</span>
-                <span class="number">30</span>
-                <span class="number">34</span>
+            <div class="game__lotto__number">
+                <span>3</span>
+                <span>5</span>
+                <span>10</span>
+                <span>24</span>
+                <span>30</span>
+                <span>34</span>
             </div>
-            <button>Button</button>
+            <button class="game__lotto__button">추첨</button>
         </div>
     </div>
 </body>

@@ -97,25 +97,29 @@ html, body{
     color: gray;
 }
 
-.random__numbers{
+.game__lotto__number{
     width: 130px;
-    height: 20px;
+    height: 21px;
     border: 1px solid black;
     border-radius: 8px;
-    background-color: yellow;
+    background-color: #ffe400;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 5px 8px;
     align-items: center;
-}
-
-.number{
-    font-size: 9px;
+    font-size: 10px;
     font-weight: 700;
+    margin-top: 10px;
+    margin-bottom: 11px;
 }
 
-button{
-    width: 70px;
-    height: 25px;
+.game__lotto__button{
+    width: 62px;
+    height: 24px;
+    border: 1px solid black;
     border-radius: 5px;
+    background-color: white;
+    font-size: 11px;
+    font-weight: 700;
 }
