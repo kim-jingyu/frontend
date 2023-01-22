@@ -1,32 +1,45 @@
 const checkValidation = () => {
     const email = document.getElementById("email").value
-    let name = document.getElementById("name").value
-    let pw1 = document.getElementById("pw1").value
-    let pw2 = document.getElementById("pw2").value
-    let isCompleted
+    const name = document.getElementById("name").value
+    const pw1 = document.getElementById("pw1").value
+    const pw2 = document.getElementById("pw2").value
+    const regionSelect = document.getElementById("regionSelect")
+    const genderSelect = document.querySelector('input[name="gender"]:checked').value
+    let validations = []
+    let validation = false
 
     // email validation
-    emailValidate(email)
+    validations.push(emailValidate(email))
 
     // name validation
-    nameValidate(name)
+    validations.push(nameValidate(name))
 
     // pw validation
-    pwValidate(pw1,pw2)
+    validations.push(pwValidate(pw1,pw2))
 
     // region validation
+    validations.push(regionValidation(regionSelect))
     
     // gender validation
+    validations.push(genderValidation(genderSelect))
 
     // total validation
-    if(isCompleted){
+    validations.forEach((param)=>{
+        if(param === true){
+            validation = true
+        }
+    })
+
+    if(validation === false){
+        alert("코드캠프 가입을 축하합니다.")
+    } else{
         document.getElementById("signUpBt").disabled = false
-        document.getElementById("signUpBt").style = "color: #0068FF; background-color: #0068FF; cursor: pointer;"
+        document.getElementById("signUpBt").style = "color: white; background-color: #0068FF; cursor: pointer;"
     }
 }
 
 const emailValidate = (email) => {
-    if(email || !email.includes("@") ){
+    if(!email || !email.includes("@") ){
         document.getElementById("errorEmail").innerText = "이메일이 올바르지 않습니다."
         return true
     } else{
@@ -36,7 +49,7 @@ const emailValidate = (email) => {
 }
 
 const nameValidate = (name) =>{
-    if(name){
+    if(!name){
         document.getElementById("errorName").innerText = "이름이 올바르지 않습니다."
         return true
     } else{
@@ -46,17 +59,44 @@ const nameValidate = (name) =>{
 }
 
 const pwValidate = (pw1,pw2) => {
-    if(pw1){
+    let isValidated = false
+    if(!pw1){
         document.getElementById("errorPw1").innerText = "비밀번호를 입력해 주세요."
+        isValidated = true
     }
-    else if(pw2){
+    if(!pw2){
         document.getElementById("errorPw2").innerText = "비밀번호를 입력해 주세요."
+        isValidated = true
     }
-    else {
+    if(pw1 !== pw2){
         document.getElementById("errorPw2").innerText = "비밀번호를 일치시켜 주세요."
+        isValidated = true
+    }
+    if(pw1 && pw2 && pw1 === pw2){
+        document.getElementById("errorPw2").innerText = ""
+    }
+    return isValidated
+}
+
+const regionValidation = (regionSelect) => {
+    let text = regionSelect.options[document.getElementById("regionSelect").selectedIndex].text;
+    if(text === "" || text === "지역을 선택하세요."){
+        document.getElementById("errorRegion").innerText = "지역을 선택해 주세요."
+        return true
+    } else{
+        document.getElementById("errorRegion").innerText = ""
         return false
     }
-    return true
+}
+
+const genderValidation = (genderSelect) => {
+    if(genderSelect === ""){
+        document.getElementById("errorGender").innerText = "성별을 선택해 주세요."
+        return true
+    } else{
+        document.getElementById("errorGender").innerText = ""
+        return false
+    }
 }
 
 const changeFocus1 = () => {
@@ -97,7 +137,7 @@ const transmitAuth = () => {
         document.getElementById("authCp").disabled = false
         document.getElementById("authCp").style = "color: white; background-color:#0068FF; cursor:pointer;"
         
-        let time = 3
+        let time = 180
         let timer
 
         timer = setInterval(function() {
@@ -121,16 +161,23 @@ const transmitAuth = () => {
 const completeAuth = (timer) => {
     alert("인증이 완료되었습니다.")
 
+    // 인증번호 전송 버튼 비활성화
     document.getElementById("authTr").disabled = true
     document.getElementById("authTr").style = "color: #d2d2d2; background-color:white;"
 
+    // 인증완료 버튼 비활성화
     document.getElementById("authCp").disabled = true
     document.getElementById("authCp").innerText = "인증완료"
     document.getElementById("authCp").style = "color: #d2d2d2; background-color:white;"
     
+    // 인증번호 및 인증 시간 초기화
     document.getElementById("authTm").innerText = "3:00"
     document.getElementById("authNm").innerText = "000000"
     
-    console.log("반복")
+    // 가입하기 버튼 활성화
+    document.getElementById("signUpBt").disabled = false
+    document.getElementById("signUpBt").style = "color: white; background-color:#0068FF; cursor:pointer;"
+
+    // console.log("반복체크")
     clearInterval(timer)
 }

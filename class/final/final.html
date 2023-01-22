@@ -11,14 +11,22 @@
             코드캠프 회원가입
         </div>
         <div class="loginInfo">
-            <input id="email" class ="loginInput" type="text" placeholder="이메일을 입력해 주세요.">
-            <div id="errorEmail" class="errorText"></div>
-            <input id="name" class ="loginInput" type="text" placeholder="이름을 입력해 주세요.">
-            <div id="errorName" class="errorText"></div>
-            <input id="pw1" class ="loginInput" type="text" placeholder="비밀번호를 입력해 주세요.">
-            <div id="errorPw1" class="errorText"></div>
-            <input id="pw2" class ="loginInput" type="text" placeholder="비밀번호를 다시 입력해 주세요.">
-            <div id="errorPw2" class="errorText"></div>
+            <div class="group">
+                <input id="email" class ="loginInput" type="text" placeholder="이메일을 입력해 주세요.">
+                <div id="errorEmail" class="errorText"></div>
+            </div>
+            <div class="group">
+                <input id="name" class ="loginInput" type="text" placeholder="이름을 입력해 주세요.">
+                <div id="errorName" class="errorText"></div>
+            </div>
+            <div class="group">
+                <input id="pw1" class ="loginInput" type="password" placeholder="비밀번호를 입력해 주세요.">
+                <div id="errorPw1" class="errorText"></div>
+            </div>
+            <div class="group">
+                <input id="pw2" class ="loginInput" type="password" placeholder="비밀번호를 다시 입력해 주세요.">
+                <div id="errorPw2" class="errorText"></div>
+            </div>
         </div>
         <div class="phone">
             <input type="text" id="ph1" class="phNum" maxlength="3" oninput="changeFocus1()">-
@@ -35,20 +43,23 @@
                 <button id="authCp" class="authCompleted" disabled="true">인증확인</button>
             </div>
         </div>
-        
-        <select id="regionSelect" class="region">
-            <option disabled="true" selected="true">지역을 선택하세요.</option>
-            <option>서울</option>
-            <option>인천</option>
-            <option>경기</option>
-        </select>
-        <div id="errorRegion" class="errorText"></div>
-        <div class="genderBox">
-            <input class="genderCheckBox" type="radio" name="gender">
-            <div class="genderLeft">여성</div>
-            <input class="genderCheckBox" type="radio" name="gender">남성
+        <div class="group">
+            <select id="regionSelect" class="region">
+                <option disabled="true" selected="true">지역을 선택하세요.</option>
+                <option>서울</option>
+                <option>인천</option>
+                <option>경기</option>
+            </select>
+            <div id="errorRegion" class="errorText"></div>
         </div>
-        <div id="error" class="errorText"></div>
+        <div class="group">
+            <div class="genderBox">
+                <input class="genderCheckBox" type="radio" name="gender">
+                <div class="genderLeft">여성</div>
+                <input class="genderCheckBox" type="radio" name="gender">남성
+            </div>
+            <div id="errorGender" class="errorText"></div>
+        </div>
         <div class="divideLine"></div>
         <button id="signUpBt" class="signUpButton" disabled="true" onclick="checkValidation()">가입하기</button>
     </div>
