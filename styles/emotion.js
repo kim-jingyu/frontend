@@ -11,30 +11,21 @@ export const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    border: none;
 `;
 
 export const Title = styled.div`
     font-family: Arial, Helvetica, sans-serif;
     font-size: 36px;
     font-weight: bold;
-    display: flex;
-    justify-content: center;
 `;
 
 export const WriterWrapper = styled.div`
     width: 100%;
     padding-top: 40px;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
-`;
-
-export const InputWrapper = styled.div`
-    padding-top: 40px;
-`;
-
-export const Label = styled.div`
-    font-size: 16px;
-    font-weight: 500;
 `;
 
 export const Writer = styled.input`
@@ -42,7 +33,6 @@ export const Writer = styled.input`
     height: 52px;
     border: 1px solid #bdbdbd;
     padding-left: 16px;
-    margin-top: 10px;
 `;
 
 export const Password = styled.input`
@@ -50,7 +40,16 @@ export const Password = styled.input`
     height: 52px;
     padding-left: 16px;
     border: 1px solid #bdbdbd;
-    margin-top: 10px;
+`;
+
+export const Label = styled.div`
+    font-size: 16px;
+    font-weight: 500;
+    padding-bottom: 16px;
+`;
+
+export const InputWrapper = styled.div`
+    padding-top: 40px;
 `;
 
 export const Subject = styled.input`
@@ -106,7 +105,7 @@ export const Youtube = styled.input`
 
 export const ImageWrapper = styled.div`
     width: 996px;
-    height: 40px;
+    padding-top: 40px;
 `;
 
 export const UploadButton = styled.button`
