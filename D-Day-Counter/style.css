@@ -13,5 +13,22 @@ h1{
 }
 
 #start-btn{
+    margin-top: 0.5rem;
+    font-size: 1.3rem;
+}
+
+#d-day-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 1.6rem;
+}
+
+.d-day-child-container{
+    text-align: center;
+    margin-right: 1rem;
+}
+
+.d-day-child-container span{
     font-size: 1.3rem;
 }
