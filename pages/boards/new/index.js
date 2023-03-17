@@ -7,85 +7,59 @@ export default function New(){
     const [pw, setPw] = useState("")
     const [subject, setSubject] = useState("")
     const [content, setContent] = useState("")
-    const [address1, setAddress1] = useState("")
-    const [address2, setAddress2] = useState("")
-    const [address3, setAddress3] = useState("")
-    const [youtube, setYoutube] = useState("")
 
     const [errorWriter, setErrorWriter] = useState("")
     const [errorPw, setErrorPw] = useState("")
     const [errorSubject, setErrorSubject] = useState("")
     const [errorContent, setErrorContent] = useState("")
-    const [errorAddress1, setErrorAddress1] = useState("")
-    const [errorAddress2, setErrorAddress2] = useState("")
-    const [errorAddress3, setErrorAddress3] = useState("")
-    const [errorYoutube, setErrorYoutube] = useState("")
 
-    function handleChangeWriter(event){
+    const handleChangeWriter = (event) => {
         const value = event.target.value
         setWriter(value)
+        if(value){
+            setErrorWriter("")
+        }
     }
 
-    function handleChangePw(event){
+    const handleChangePw = (event) => {
         const value = event.target.value
         setPw(value)
+        if(value){
+            setErrorPw("")
+        }
     }
 
-    function handleChangeSubject(event){
+    const handleChangeSubject = (event) => {
         const value = event.target.value
         setSubject(value)
+        if(value){
+            setErrorSubject("")
+        }
     }
 
-    function handleChangeContent(event){
+    const handleChangeContent = (event) => {
         const value = event.target.value
         setContent(value)
-    }
-
-    function onChangeAd1(event){
-        const value = event.target.value
-        setAddress1(value)
-    }
-
-    function onChangeAd2(event){
-        const value = event.target.value
-        setAddress2(value)
-    }
-
-    function onChangeAd3(event){
-        const value = event.target.value
-        setAddress3(value)
-    }
-
-    function onChangeYoutube(event){
-        const value = event.target.value
-        setYoutube(value)
+        if(value){
+            setErrorContent("")
+        }
     }
     
-    
-    function handleClickSubmit(){
-        if(writer === ""){
+    const handleClickSubmit = () => {
+        if(!writer){
             setErrorWriter("이름을 적어주세요.")
         }
-        if(pw === ""){
+        if(!pw){
             setErrorPw("비밀번호를 작성해주세요.")
         }
-        if(subject === ""){
+        if(!subject){
             setErrorSubject("제목을 작성해주세요.")
         }
-        if(content === ""){
+        if(!content){
             setErrorContent("내용을 작성해주세요.")
         }
-        if(address1 === ""){
-            setErrorAddress1("우편번호를 작성해주세요.")
-        }
-        if(address2 === ""){
-            setErrorAddress2("주소를 작성해주세요.")
-        }
-        if(address3 === ""){
-            setErrorAddress3("주소를 작성해주세요.")
-        }
-        if(youtube === ""){
-            setErrorYoutube("링크를 복사해주세요.")
+        if(writer && pw && subject && content){
+            alert("모든 내용 입력이 완료되었습니다!")
         }
     }
 
@@ -117,19 +91,15 @@ export default function New(){
             <InputWrapper>
                 <Label>주소</Label>
                 <ZipCodeWrapper>
-                    <ZipCode placeholder="07250" onChange={onChangeAd1}/>
-                    <Error>{errorAddress1}</Error>
+                    <ZipCode placeholder="07250" />
                     <SearchButton>우편번호 검색</SearchButton>
                 </ZipCodeWrapper>
-                <Address onChange={onChangeAd2}/>
-                <Error>{errorAddress2}</Error>
-                <Address onChange={onChangeAd3}/>
-                <Error>{errorAddress3}</Error>
+                <Address />
+                <Address />
             </InputWrapper>
             <InputWrapper>
                 <Label>유튜브</Label>
-                <Youtube placeholder="링크를 복사해주세요." onChange={onChangeYoutube}/>
-                <Error>{errorYoutube}</Error>
+                <Youtube placeholder="링크를 복사해주세요."/>
             </InputWrapper>
             <ImageWrapper>
                 <Label>사진첨부</Label>
