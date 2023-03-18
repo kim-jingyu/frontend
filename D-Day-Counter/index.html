@@ -3,7 +3,7 @@
 <head>
     <title>D-DAY-COUNTER</title>
     <link href="./style.css" rel="stylesheet" />
-    <script src="./script.js"></script>
+    <script src="./script.js" defer></script>
 </head>
 <body>
     <h1>D-DAY</h1>
@@ -27,13 +27,15 @@
         </div>
     </div>
 
-    <div>
-        <input type="text" size="5"> -
-        <input type="text" size="5"> -
-        <input type="text" size="5">
+    <div id="d-day-message"></div>
+
+    <div id="target-selector-id">
+        <input id="target-year-input" class="target-input" size="5"> -
+        <input id="target-month-input" class="target-input" size="5"> -
+        <input id="target-date-input" class="target-input" size="5">
     </div>
 
-    <button onclick="" id="start-btn">카운트다운 시작</button>
+    <button onclick="counterMaker()" id="start-btn">카운트다운 시작</button>
 
 </body>
 </html>
