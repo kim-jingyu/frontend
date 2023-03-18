@@ -1,7 +1,7 @@
 const container = document.querySelector('#d-day-container')
 const messageContainer = document.querySelector('#d-day-message')
 
-container.style.display = 'none'
+// container.style.display = 'none'
 messageContainer.innerHTML = 'D-Day를 입력해 주세요.'
 
 const dateFormMaker = () => {
@@ -36,15 +36,25 @@ const counterMaker = () => {
         remainingSec: Math.floor(remaining) % 60                // 남은 초
     }
 
-    const documentObj = {
-        days: document.getElementById('days'),          // 남은 날짜
-        hours: document.getElementById('hours'),        // 남은 시간
-        min: document.getElementById('min'),            // 남은 분
-        sec: document.getElementById('sec')             // 남은 초
-    }
+    // const documentObj = {
+    //     days: document.getElementById('days'),          // 남은 날짜
+    //     hours: document.getElementById('hours'),        // 남은 시간
+    //     min: document.getElementById('min'),            // 남은 분
+    //     sec: document.getElementById('sec')             // 남은 초
+    // }
 
-    documentObj.days.textContent = remainingObj['remainingDate']
-    documentObj.hours.textContent = remainingObj['remainingHours']
-    documentObj.min.textContent = remainingObj['remainingMin']
-    documentObj.sec.textContent = remainingObj['remainingSec']
+    const timeKeys = Object.keys(remainingObj)
+    // const docKeys = Object.keys(documentObj)
+
+    // for(let i = 0; i<timeKeys.length; i++){
+    //     documentObj[docKeys[i]].textContent = remainingObj[timeKeys[i]]
+    // }
+
+    const documentArr = ['days', 'hours', 'min', 'sec']
+
+    let i = 0
+    for (const id of documentArr) {
+        document.getElementById(id).textContent = remainingObj[timeKeys[i]]
+        i++
+    }
 }
