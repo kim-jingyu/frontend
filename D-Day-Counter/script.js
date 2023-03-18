@@ -1,7 +1,7 @@
 const container = document.querySelector('#d-day-container')
 const messageContainer = document.querySelector('#d-day-message')
 
-// container.style.display = 'none'
+container.style.display = 'none' 
 messageContainer.innerHTML = 'D-Day를 입력해 주세요.'
 
 const dateFormMaker = () => {
@@ -22,11 +22,17 @@ const counterMaker = () => {
     if(remaining <= 0){
         // 만약 remaining이 0 또는 그 이하이면, 타이머가 종료되었습니다. 출력
         // alert('타이머가 종료되었습니다.')
+        container.style.display = 'none'
         messageContainer.innerHTML = '타이머가 종료되었습니다.'
+        messageContainer.style.display = 'flex'
+        return
     }else if(isNaN(remaining)){
         // 만약 잘못된 날짜가 들어왔다면, 유효한 시간대가 아닙니다. 출력
         // alert('유효한 시간대가 아닙니다.')
+        container.style.display = 'none'
         messageContainer.innerHTML = '유효한 시간대가 아닙니다.'
+        messageContainer.style.display = 'flex'
+        return
     }
 
     const remainingObj = {
@@ -57,4 +63,10 @@ const counterMaker = () => {
         document.getElementById(id).textContent = remainingObj[timeKeys[i]]
         i++
     }
+}
+
+const starter = () => {
+    container.style.display = 'flex'
+    messageContainer.style.display = 'none'
+    counterMaker()
 }
