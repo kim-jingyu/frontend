@@ -1,8 +1,9 @@
 const container = document.querySelector('#d-day-container')
 const messageContainer = document.querySelector('#d-day-message')
+let intervalArr = []
 
 container.style.display = 'none' 
-messageContainer.innerHTML = 'D-Day를 입력해 주세요.'
+messageContainer.innerHTML = '<h3>D-Day를 입력해 주세요.</h3>'
 
 const dateFormMaker = () => {
     const inputYear = document.querySelector("#target-year-input").value
@@ -14,6 +15,7 @@ const dateFormMaker = () => {
 }
 
 const counterMaker = () => {
+    console.log("반복 테스트 중")
     const targetDateInput = dateFormMaker()
     const nowDate = new Date()
     const targetDate = new Date(targetDateInput).setHours(0, 0, 0, 0)
@@ -23,14 +25,14 @@ const counterMaker = () => {
         // 만약 remaining이 0 또는 그 이하이면, 타이머가 종료되었습니다. 출력
         // alert('타이머가 종료되었습니다.')
         container.style.display = 'none'
-        messageContainer.innerHTML = '타이머가 종료되었습니다.'
+        messageContainer.innerHTML = '<h3>타이머가 종료되었습니다.</h3>'
         messageContainer.style.display = 'flex'
         return
     }else if(isNaN(remaining)){
         // 만약 잘못된 날짜가 들어왔다면, 유효한 시간대가 아닙니다. 출력
         // alert('유효한 시간대가 아닙니다.')
         container.style.display = 'none'
-        messageContainer.innerHTML = '유효한 시간대가 아닙니다.'
+        messageContainer.innerHTML = '<h3>유효한 시간대가 아닙니다.</h3>'
         messageContainer.style.display = 'flex'
         return
     }
@@ -69,8 +71,15 @@ const starter = () => {
     container.style.display = 'flex'
     messageContainer.style.display = 'none'
     counterMaker()
-    setInterval(counterMaker, 1000)
+    const intervalId = setInterval(counterMaker, 1000)
+    intervalArr.push(intervalId)
     // for(let i = 0; i<100; i++){
     //     setTimeout(counterMaker, 1000 * i);
     // }
+}
+
+const initializer = () => {
+    for(const id of intervalArr){
+        clearInterval(id)
+    }
 }
