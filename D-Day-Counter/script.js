@@ -14,11 +14,9 @@ const dateFormMaker = () => {
     return dateForm
 }
 
-const counterMaker = () => {
-    console.log("반복 테스트 중")
-    const targetDateInput = dateFormMaker()
+const counterMaker = (data) => {
     const nowDate = new Date()
-    const targetDate = new Date(targetDateInput).setHours(0, 0, 0, 0)
+    const targetDate = new Date(data).setHours(0, 0, 0, 0)
     const remaining = (targetDate - nowDate) / 1000                     // ms 나눠주기
 
     if(remaining <= 0){
@@ -53,27 +51,38 @@ const counterMaker = () => {
     //     sec: document.getElementById('sec')             // 남은 초
     // }
 
-    const timeKeys = Object.keys(remainingObj)
     // const docKeys = Object.keys(documentObj)
-
+    
     // for(let i = 0; i<timeKeys.length; i++){
-    //     documentObj[docKeys[i]].textContent = remainingObj[timeKeys[i]]
-    // }
-
+        //     documentObj[docKeys[i]].textContent = remainingObj[timeKeys[i]]
+        // }
+        
+    const timeKeys = Object.keys(remainingObj)
     const documentArr = ['days', 'hours', 'min', 'sec']
+
+    const format = (time) => {
+        if(time < 10){
+            return '0' + time
+        } else{
+            return time
+        }
+    } 
 
     let i = 0
     for (const id of documentArr) {
-        document.getElementById(id).textContent = remainingObj[timeKeys[i]]
+        const remainingTime = format(remainingObj[timeKeys[i]])
+        document.getElementById(id).textContent = remainingTime
         i++
     }
 }
 
 const starter = () => {
+    const targetDateInput = dateFormMaker()
     container.style.display = 'flex'
     messageContainer.style.display = 'none'
-    counterMaker()
-    const intervalId = setInterval(counterMaker, 1000)
+    setIntervalClear()
+    counterMaker(targetDateInput)
+    const intervalId = setInterval(() => counterMaker(targetDateInput), 1000)
     intervalArr.push(intervalId)
     // for(let i = 0; i<100; i++){
     //     setTimeout(counterMaker, 1000 * i);
