@@ -27,6 +27,7 @@ const counterMaker = () => {
         container.style.display = 'none'
         messageContainer.innerHTML = '<h3>타이머가 종료되었습니다.</h3>'
         messageContainer.style.display = 'flex'
+        setIntervalClear()
         return
     }else if(isNaN(remaining)){
         // 만약 잘못된 날짜가 들어왔다면, 유효한 시간대가 아닙니다. 출력
@@ -34,6 +35,7 @@ const counterMaker = () => {
         container.style.display = 'none'
         messageContainer.innerHTML = '<h3>유효한 시간대가 아닙니다.</h3>'
         messageContainer.style.display = 'flex'
+        setIntervalClear()
         return
     }
 
@@ -79,6 +81,13 @@ const starter = () => {
 }
 
 const initializer = () => {
+    container.style.display = 'none'
+    messageContainer.innerHTML = '<h3>D-Day를 입력해주세요.</h3>'
+    messageContainer.style.display = 'flex'
+    setIntervalClear()
+}
+
+const setIntervalClear = () => {
     for(const id of intervalArr){
         clearInterval(id)
     }
