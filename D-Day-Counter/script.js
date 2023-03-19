@@ -1,9 +1,8 @@
 const container = document.querySelector('#d-day-container')
 const messageContainer = document.querySelector('#d-day-message')
-let intervalArr = []
+const savedDate = localStorage.getItem('saved-date')
 
-container.style.display = 'none' 
-messageContainer.innerHTML = '<h3>D-Day를 입력해 주세요.</h3>'
+const intervalArr = []
 
 const dateFormMaker = () => {
     const inputYear = document.querySelector("#target-year-input").value
@@ -25,6 +24,8 @@ const counterMaker = (data) => {
         container.style.display = 'none'
         messageContainer.innerHTML = '<h3>타이머가 종료되었습니다.</h3>'
         messageContainer.style.display = 'flex'
+        // localStorage 에 있는 날짜 정보 삭제
+        localStorage.removeItem('saved-date')
         setIntervalClear()
         return
     }else if(isNaN(remaining)){
@@ -33,6 +34,8 @@ const counterMaker = (data) => {
         container.style.display = 'none'
         messageContainer.innerHTML = '<h3>유효한 시간대가 아닙니다.</h3>'
         messageContainer.style.display = 'flex'
+        // localStorage 에 있는 날짜 정보 삭제
+        localStorage.removeItem('saved-date')
         setIntervalClear()
         return
     }
@@ -76,8 +79,12 @@ const counterMaker = (data) => {
     }
 }
 
-const starter = () => {
-    const targetDateInput = dateFormMaker()
+const starter = (targetDateInput) => {
+    if(!targetDateInput){
+        // 매개변수로 넘어온 Date 정보가 없으면, (새로 카운트다운 시작하는 경우)
+        targetDateInput = dateFormMaker()
+    }
+    localStorage.setItem('saved-date', targetDateInput)         // local storage 에 값 세팅
     container.style.display = 'flex'
     messageContainer.style.display = 'none'
     setIntervalClear()
@@ -89,15 +96,26 @@ const starter = () => {
     // }
 }
 
+const setIntervalClear = () => {
+    for(const id of intervalArr){
+        clearInterval(id)
+    }
+}
+
 const initializer = () => {
     container.style.display = 'none'
     messageContainer.innerHTML = '<h3>D-Day를 입력해주세요.</h3>'
     messageContainer.style.display = 'flex'
     setIntervalClear()
+    // localStorage 에 있는 날짜 정보 삭제
+    localStorage.removeItem('saved-date')
 }
 
-const setIntervalClear = () => {
-    for(const id of intervalArr){
-        clearInterval(id)
-    }
+if(savedDate){
+    // localStorage 에 날짜 정보가 존재한다면, starter 함수 실행
+    starter(savedDate)
+} else{
+    // localStorage 에 날짜 정보가 없다면,
+    container.style.display = 'none' 
+    messageContainer.innerHTML = '<h3>D-Day를 입력해 주세요.</h3>'
 }
