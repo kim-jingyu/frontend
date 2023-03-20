@@ -10,6 +10,10 @@ const createToDo = () => {
         newLi.classList.toggle('complete')
     })
 
+    newLi.addEventListener('dblclick', () => {
+        newLi.remove()
+    })
+
     newSpan.textContent = todoInput.value
     newLi.appendChild(newBtn)
     newLi.appendChild(newSpan)
@@ -20,5 +24,12 @@ const createToDo = () => {
 const keyCodeCheck = () => {
     if(window.event.keyCode === 13 && todoInput.value !== ''){
         createToDo()
+    }
+}
+
+const deleteAll = () => {
+    const liList = document.querySelectorAll('li')
+    for(const li of liList){
+        li.remove()
     }
 }
