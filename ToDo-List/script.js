@@ -73,3 +73,37 @@ if(savedTodoList){
         createToDo(data)
     }
 }
+
+const weatherSearch = (position) => {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${position.latitude}&lon=${position.longitude}&appid=1e62593e4462a13e31087143d9d04847`)
+    .then((res) => {
+        // 비동기로 동작하는 함수인 fetch 는 응답을 받아올 때까지 then 을 사용해서 기다려야 한다.
+        return res.json()
+    })
+    .then((json) => {
+        console.log(json)
+        console.log(json.name)
+        console.log(json.weather[0].description)
+    })
+    .catch((err) => {
+        // 요청이 제대로 이루어지지 않은 원인 확인
+        console.error(err)
+    })
+}
+
+const accessToGeo = (position) => {
+    const positionObj = {
+        latitude: position.coords.latitude,         // 위도
+        longitude: position.coords.longitude        // 경도
+    }
+
+    weatherSearch(positionObj)
+}
+
+const askForLocation = () => {
+    navigator.geolocation.getCurrentPosition(accessToGeo, (err) => {
+        console.log(err)
+    })
+}
+
+askForLocation()
