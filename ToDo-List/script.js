@@ -74,8 +74,13 @@ if(savedTodoList){
     }
 }
 
-const weatherSearch = (position) => {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${position.latitude}&lon=${position.longitude}&appid=1e62593e4462a13e31087143d9d04847`)
+const weatherDataActive = ({ location, weather }) => {
+    const locationNameTag = document.querySelector('#location-name-tag')
+    locationNameTag.textContent = location
+}
+
+const weatherSearch = ({ latitude, longitude }) => {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=1e62593e4462a13e31087143d9d04847`)
     .then((res) => {
         // 비동기로 동작하는 함수인 fetch 는 응답을 받아올 때까지 then 을 사용해서 기다려야 한다.
         return res.json()
@@ -83,7 +88,14 @@ const weatherSearch = (position) => {
     .then((json) => {
         console.log(json)
         console.log(json.name)
-        console.log(json.weather[0].description)
+        console.log(json.weather[0].main)
+
+        const weatherData = {
+            location: json.name,            // 사용자의 지역 이름
+            weather: json.weather[0].main   // 사용자의 지역 날씨
+        }
+
+        weatherDataActive(weatherData)
     })
     .catch((err) => {
         // 요청이 제대로 이루어지지 않은 원인 확인
@@ -91,10 +103,14 @@ const weatherSearch = (position) => {
     })
 }
 
-const accessToGeo = (position) => {
+const accessToGeo = ({ coords }) => {
+    const { latitude, longitude } = coords      // 위도, 경도
+
     const positionObj = {
-        latitude: position.coords.latitude,         // 위도
-        longitude: position.coords.longitude        // 경도
+        // latitude: latitude,
+        // longitude: longitude
+        latitude,       // 객체의 키와 값이 같으면 생략 가능
+        longitude       // shorthand property
     }
 
     weatherSearch(positionObj)
