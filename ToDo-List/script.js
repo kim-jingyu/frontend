@@ -3,6 +3,9 @@ const todoList = document.querySelector('#todo-list')
 
 const savedTodoList = JSON.parse(localStorage.getItem('saved-items'))
 
+// localStorage 에 저장되어 있는 날씨 데이터를 받아오는 코드
+const savedWeatherData = JSON.parse(localStorage.getItem('saved-weather'))
+
 const createToDo = (storageData) => {
     let todoContent = todoInput.value
     
@@ -81,6 +84,10 @@ const weatherDataActive = ({ location, weather }) => {
     locationNameTag.textContent = location
     console.log(weather)
     document.body.style.backgroundImage = `url('./images/${weather}.jpg')`         // 사용자의 위치에 따른 배경화면 이미지 변경
+
+    if(!savedWeatherData || savedWeatherData.location !== location || savedWeatherData.weather !== weather){
+        localStorage.setItem('saved-weather', JSON.stringify({ location, weather }))        // shorthand
+    }
 }
 
 const weatherSearch = ({ latitude, longitude }) => {
@@ -127,3 +134,7 @@ const askForLocation = () => {
 }
 
 askForLocation()
+
+if(savedWeatherData){
+    weatherDataActive(savedWeatherData)
+}
