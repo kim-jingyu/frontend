@@ -75,8 +75,12 @@ if(savedTodoList){
 }
 
 const weatherDataActive = ({ location, weather }) => {
+    const weatherMainList = ['Clear', 'Clouds', 'Drizzle', 'Rain', 'Snow', 'ThunderStorm']
+    weather = weatherMainList.includes(weather) ? weather : 'Fog'               // 가지고 있는 않은 이름의 날씨가 들어왔을때 처리
     const locationNameTag = document.querySelector('#location-name-tag')
     locationNameTag.textContent = location
+    console.log(weather)
+    document.body.style.backgroundImage = `url('./images/${weather}.jpg')`         // 사용자의 위치에 따른 배경화면 이미지 변경
 }
 
 const weatherSearch = ({ latitude, longitude }) => {
