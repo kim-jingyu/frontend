@@ -39,7 +39,7 @@ const createToDo = (storageData) => {
 }
 
 const keyCodeCheck = () => {
-    if(window.event.keyCode === 13 && todoInput.value !== ''){
+    if(window.event.keyCode === 13 && todoInput.value.trim() !== ''){
         createToDo()
     }
 }
