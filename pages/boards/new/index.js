@@ -13,6 +13,7 @@ export default function New(){
     const [errorSubject, setErrorSubject] = useState("")
     const [errorContent, setErrorContent] = useState("")
 
+    // 이벤트 핸들러 함수
     const handleChangeWriter = (event) => {
         const value = event.target.value
         setWriter(value)
