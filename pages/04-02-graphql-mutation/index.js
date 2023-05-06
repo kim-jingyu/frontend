@@ -3,7 +3,7 @@ import { gql, useMutation } from "@apollo/client"
 const CREATE_BOARD = gql`
     mutation{
         createBoard(
-            writer: "writer",
+            writer: "123",
             title: "title",
             contents: "contents"
         ){
