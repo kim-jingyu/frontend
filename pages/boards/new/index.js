@@ -1,5 +1,19 @@
 import {Contents, InputWrapper, Label, Password, Subject, Title, Wrapper, Writer, WriterWrapper, ZipCodeWrapper, ZipCode, SearchButton, Address, Youtube, ImageWrapper, UploadButton, OptionWrapper, RadioButton, RadioLabel, ButtonWrapper,CancelButton, SubmitButton, Error} from '../../../styles/emotion'
 import {useState} from 'react'
+import { gql, useMutation } from '@apollo/client'
+
+const CREATE_BOARD = gql`
+    mutation createBoard($createBoardInput: CreateBoardInput!){ # 변수의 타입 적는 곳
+        createBoard( # 실제 전달할 변수 적는 곳
+            createBoardInput: $createBoardInput
+        ){
+            _id
+            writer
+            title
+            contents
+        }
+    }
+`
 
 export default function New(){
     //javascript
@@ -12,6 +26,8 @@ export default function New(){
     const [errorPw, setErrorPw] = useState("")
     const [errorSubject, setErrorSubject] = useState("")
     const [errorContent, setErrorContent] = useState("")
+
+    const [createBoard] = useMutation(CREATE_BOARD)
 
     // 이벤트 핸들러 함수
     const handleChangeWriter = (event) => {
@@ -46,7 +62,7 @@ export default function New(){
         }
     }
     
-    const handleClickSubmit = () => {
+    const handleClickSubmit = async () => {
         if(!writer){
             setErrorWriter("이름을 적어주세요.")
         }
@@ -60,6 +76,17 @@ export default function New(){
             setErrorContent("내용을 작성해주세요.")
         }
         if(writer && pw && subject && content){
+            const result = await createBoard({
+                variables: {
+                    createBoardInput: {
+                        writer: writer,
+                        password: pw,
+                        title: subject,
+                        contents: content
+                    }
+                }
+            })
+            console.log(result)
             alert("모든 내용 입력이 완료되었습니다!")
         }
     }
