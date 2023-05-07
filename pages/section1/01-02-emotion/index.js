@@ -1,4 +1,4 @@
-import {Email, EmailInput} from '../../styles/emotion'
+import {Email, EmailInput} from '../../../styles/emotion'
 
 export default function EmotionPage(){
  

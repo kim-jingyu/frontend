@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useState } from "react"
-import Login from '../02-03-signup-state'
+import Login from '../../section2/02-03-signup-state'
 
 export default function RestGetPage() {
 
