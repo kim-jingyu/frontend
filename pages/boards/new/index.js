@@ -1,6 +1,7 @@
-import {Contents, InputWrapper, Label, Password, Subject, Title, Wrapper, Writer, WriterWrapper, ZipCodeWrapper, ZipCode, SearchButton, Address, Youtube, ImageWrapper, UploadButton, OptionWrapper, RadioButton, RadioLabel, ButtonWrapper,CancelButton, SubmitButton, Error} from '../../../styles/emotion'
+import {Contents, InputWrapper, Label, Password, Subject, Title, Wrapper, Writer, WriterWrapper, ZipCodeWrapper, ZipCode, SearchButton, Address, Youtube, ImageWrapper, UploadButton, OptionWrapper, RadioButton, RadioLabel, ButtonWrapper,CancelButton, SubmitButton, Error} from '../../../styles/boardsNew'
 import {useState} from 'react'
 import { gql, useMutation } from '@apollo/client'
+import { useRouter } from 'next/router'
 
 const CREATE_BOARD = gql`
     mutation createBoard($createBoardInput: CreateBoardInput!){ # 변수의 타입 적는 곳
@@ -15,7 +16,9 @@ const CREATE_BOARD = gql`
     }
 `
 
-export default function New(){
+export default function BoardsNewPage(){
+    const router = useRouter()
+
     //javascript
     const [writer, setWriter] = useState("")
     const [pw, setPw] = useState("")
@@ -76,18 +79,24 @@ export default function New(){
             setErrorContent("내용을 작성해주세요.")
         }
         if(writer && pw && subject && content){
-            const result = await createBoard({
-                variables: {
-                    createBoardInput: {
-                        writer: writer,
-                        password: pw,
-                        title: subject,
-                        contents: content
+            try{
+                const result = await createBoard({
+                    variables: {
+                        createBoardInput: {
+                            writer: writer,
+                            password: pw,
+                            title: subject,
+                            contents: content
+                        }
                     }
-                }
-            })
-            console.log(result)
-            alert("모든 내용 입력이 완료되었습니다!")
+                })
+                console.log(result.data.createBoard._id)
+
+                router.push(`/boards/${result.data.createBoard._id}`)
+                alert("모든 내용 입력이 완료되었습니다!")
+            } catch(error){
+                alert(error.message)
+            }
         }
     }
 
