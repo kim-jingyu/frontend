@@ -5,6 +5,8 @@ import {CREATE_BOARD} from './BoardWrite.queries'
 
 export default function BoardWrite() {
     // state
+    const [isActive, setIsActive] = useState(false) // 버튼 색깔 control - true:yellow, false:gray
+
     const [writer, setWriter] = useState()
     const [title, setTitle] = useState()
     const [contents, setContents] = useState()
@@ -39,7 +41,7 @@ export default function BoardWrite() {
     return(
         <div>
             <div>$$$$$$$$$$여기는 component입니다.$$$$$$$$$$</div>
-            <BoardWriteUI onClickSubmit={onClickSubmit} onChangeWriter={onChangeWriter} onChangeTitle={onChangeTitle} onChangeContents={onChangeContents}/>
+            <BoardWriteUI onClickSubmit={onClickSubmit} onChangeWriter={onChangeWriter} onChangeTitle={onChangeTitle} onChangeContents={onChangeContents} isActive={isActive}/>
             <div>$$$$$$$$$$여기는 component입니다.$$$$$$$$$$</div>
         </div>
     )
