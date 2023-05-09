@@ -28,20 +28,38 @@ export default function BoardWrite() {
 
     const onChangeWriter = (event) => {
         setWriter(event.target.value)
+
+        if(event.target.value && title && contents){
+            setIsActive(true)
+        }
     }
 
     const onChangeTitle = (event) => {
         setTitle(event.target.value)
+
+        if(writer && event.target.value && contents){
+            setIsActive(true)
+        }
     }
 
     const onChangeContents = (event) => {
         setContents(event.target.value)
+
+        if(writer && title && event.target.value){
+            setIsActive(true)
+        }
     }
+
 
     return(
         <div>
             <div>$$$$$$$$$$여기는 component입니다.$$$$$$$$$$</div>
-            <BoardWriteUI onClickSubmit={onClickSubmit} onChangeWriter={onChangeWriter} onChangeTitle={onChangeTitle} onChangeContents={onChangeContents} isActive={isActive}/>
+            <BoardWriteUI 
+                onClickSubmit={onClickSubmit} 
+                onChangeWriter={onChangeWriter} 
+                onChangeTitle={onChangeTitle} 
+                onChangeContents={onChangeContents} 
+                isActive={isActive}/>
             <div>$$$$$$$$$$여기는 component입니다.$$$$$$$$$$</div>
         </div>
     )
