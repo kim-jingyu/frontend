@@ -1,8 +1,8 @@
 // createdAt -> date 형식 전환 util
 export const getDate = (date) => {
-    const newDate = new Date(date)
-    const year = newDate.getFullYear()
-    const month = newDate.getMonth() + 1
-    const day = newDate.getDate()
+    const _date = new Date(date)
+    const year = _date.getFullYear()
+    const month = _date.getMonth() + 1
+    const day = _date.getDate()
     return `${year}-${month}-${day}`
 }
