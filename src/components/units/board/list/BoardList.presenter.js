@@ -31,13 +31,5 @@ export default function BoardListUI(props){
                 </S.Button>
             </S.Footer>
         </S.Wrapper>
-
-        // <>
-        //     {props.data?.fetchBoards.map((el) => (
-        //         <div key={el._id}>
-
-        //         </div>
-        //     ))}
-        // </>
     )
 }
