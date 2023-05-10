@@ -1,5 +1,5 @@
 // 게시글 등록
-export default BoardNewPage = () => {
+export default function BoardNewPage() {
     return (
         <>
             <h1>등록페이지</h1>

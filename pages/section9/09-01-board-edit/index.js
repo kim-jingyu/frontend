@@ -1,5 +1,5 @@
 // 게시글 수정
-export default BoardEditPage = () => {
+export default function BoardEditPage() {
     return(
         <>
             <h1>수정페이지</h1>
