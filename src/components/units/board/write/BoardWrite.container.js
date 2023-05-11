@@ -119,16 +119,29 @@ export default function BoardWrite(props){
 
     // 수정하기
     const handleClickUpdate = async () => {
+        // refactoring: early-exit
+        if(!subject && !content){
+            alert("수정된 내용이 없습니다!")
+            return
+        }
+        
+        if(!pw){
+            alert("비밀번호를 입력해주세요!")
+            return
+        }
+
         try{
+            // 바뀐 것만 mutation에 넣어 보내준다.
+            const updateBoardInput = {}
+            if(subject) updateBoardInput.title = subject
+            if(content) updateBoardInput.contents = content
+
             const result = await updateBoard({
-                // 백엔드 API에서 작성자 수정은 불가능하게 막아놓았음.
                 variables: {
+                    // writer는 수정하지 않는다.
                     boardId: router.query.boardId,
                     password: pw,
-                    updateBoardInput: {
-                        title: subject,
-                        contents: content
-                    }
+                    updateBoardInput  // short hand property 가능
                 }
             })
             router.push(`/boards/${result.data.updateBoard._id}`)
@@ -151,6 +164,7 @@ export default function BoardWrite(props){
             handleClickUpdate={handleClickUpdate}
             isActive={isActive}
             isEdit={props.isEdit}
+            data={props.data}
         />
     )
 }

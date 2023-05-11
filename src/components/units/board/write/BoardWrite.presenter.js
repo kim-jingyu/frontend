@@ -8,23 +8,42 @@ export default function BoardWriteUI(props) {
             <S.WriterWrapper>
                 <S.InputWrapper>
                     <S.Label>작성자</S.Label>
-                    <S.Writer type="text" placeholder="이름을 적어주세요." onChange={props.handleChangeWriter}/>
+                    <S.Writer 
+                        type="text" 
+                        placeholder="이름을 적어주세요." 
+                        onChange={props.handleChangeWriter} 
+                        defaultValue={props.data?.fetchBoard.writer}
+                        readOnly={props.data?.fetchBoard.writer}
+                    />
                     <S.Error>{props.errorWriter}</S.Error>
                 </S.InputWrapper>
                 <S.InputWrapper>
                     <S.Label>비밀번호</S.Label>
-                    <S.Password type="password" placeholder="비밀번호를 작성해주세요." onChange={props.handleChangePw}/>
+                    <S.Password 
+                        type="password" 
+                        placeholder="비밀번호를 작성해주세요." 
+                        onChange={props.handleChangePw}
+                    />
                     <S.Error>{props.errorPw}</S.Error>
                 </S.InputWrapper>
             </S.WriterWrapper>
             <S.InputWrapper>
                 <S.Label>제목</S.Label>
-                <S.Subject type="text" placeholder="제목을 작성해주세요." onChange={props.handleChangeSubject}/>
+                <S.Subject 
+                    type="text" 
+                    placeholder="제목을 작성해주세요." 
+                    onChange={props.handleChangeSubject} 
+                    defaultValue={props.data?.fetchBoard.title}
+                />
                 <S.Error>{props.errorSubject}</S.Error>
             </S.InputWrapper>
             <S.InputWrapper>
                 <S.Label>내용</S.Label>
-                <S.Contents placeholder="내용을 작성해주세요." onChange={props.handleChangeContent}/>
+                <S.Contents 
+                    placeholder="내용을 작성해주세요." 
+                    onChange={props.handleChangeContent} 
+                    defaultValue={props.data?.fetchBoard.contents}
+                />
                 <S.Error>{props.errorContent}</S.Error>
             </S.InputWrapper>
             <S.InputWrapper>
