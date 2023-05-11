@@ -121,6 +121,7 @@ export default function BoardWrite(props){
     const handleClickUpdate = async () => {
         try{
             const result = await updateBoard({
+                // 백엔드 API에서 작성자 수정은 불가능하게 막아놓았음.
                 variables: {
                     boardId: router.query.boardId,
                     password: pw,
@@ -137,21 +138,19 @@ export default function BoardWrite(props){
     }
 
     return (
-        <div>
-            <BoardWriteUI 
-                errorWriter={errorWriter}
-                errorPw={errorPw}
-                errorSubject={errorSubject}
-                errorContent={errorContent}
-                handleChangeWriter={handleChangeWriter}
-                handleChangePw={handleChangePw}
-                handleChangeSubject={handleChangeSubject}
-                handleChangeContent={handleChangeContent}
-                handleClickSubmit={handleClickSubmit}
-                handleClickUpdate={handleClickUpdate}
-                isActive={isActive}
-                isEdit={props.isEdit}
-            />
-        </div>
+        <BoardWriteUI 
+            errorWriter={errorWriter}
+            errorPw={errorPw}
+            errorSubject={errorSubject}
+            errorContent={errorContent}
+            handleChangeWriter={handleChangeWriter}
+            handleChangePw={handleChangePw}
+            handleChangeSubject={handleChangeSubject}
+            handleChangeContent={handleChangeContent}
+            handleClickSubmit={handleClickSubmit}
+            handleClickUpdate={handleClickUpdate}
+            isActive={isActive}
+            isEdit={props.isEdit}
+        />
     )
 }
