@@ -1,7 +1,8 @@
 // 모든 파일 공통 세팅하기
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client'
+import { AppProps } from 'next/app'
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component }: AppProps) {
 
   // graphql 세팅
   const client = new ApolloClient({
@@ -16,7 +17,7 @@ export default function App({ Component, pageProps }) {
       {/* ApolloProvider -> 이 컴포넌트에서 client graphql 세팅을 사용할 수 있게 전달해준다. */}
       <ApolloProvider client={client}>
         {/* 각 페이지 컴포넌트 */}
-        <Component {...pageProps} />  
+        <Component />
       </ApolloProvider>
       <div>=======여기는 _app.js 컴포넌트 마지막 부분입니다.==========</div>
     </div>
