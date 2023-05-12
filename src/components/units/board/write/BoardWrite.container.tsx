@@ -1,5 +1,5 @@
 import BoardWriteUI from "./BoardWrite.presenter"
-import {useState} from 'react'
+import {ChangeEvent, useState} from 'react'
 import {useMutation} from '@apollo/client'
 import {useRouter} from 'next/router'
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries"
@@ -25,7 +25,7 @@ export default function BoardWrite(props){
     const [updateBoard] = useMutation(UPDATE_BOARD)
 
     // 이벤트 핸들러 함수
-    const handleChangeWriter = (event) => {
+    const handleChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value
         setWriter(value)
         if(value){
@@ -39,7 +39,7 @@ export default function BoardWrite(props){
         }
     }
 
-    const handleChangePw = (event) => {
+    const handleChangePw = (event: ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value
         setPw(value)
         if(value){
@@ -53,7 +53,7 @@ export default function BoardWrite(props){
         }
     }
 
-    const handleChangeSubject = (event) => {
+    const handleChangeSubject = (event: ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value
         setSubject(value)
         if(value){
@@ -67,7 +67,7 @@ export default function BoardWrite(props){
         }
     }
 
-    const handleChangeContent = (event) => {
+    const handleChangeContent = (event: ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value
         setContent(value)
         if(value){
@@ -111,7 +111,7 @@ export default function BoardWrite(props){
 
                 router.push(`/boards/${result.data.createBoard._id}`)
                 alert("모든 내용 입력이 완료되었습니다!")
-            } catch(error){
+            } catch(error: any){
                 alert(error.message)
             }
         }
@@ -145,7 +145,7 @@ export default function BoardWrite(props){
                 }
             })
             router.push(`/boards/${result.data.updateBoard._id}`)
-        } catch(error){
+        } catch(error: any){
             alert(error.message)
         }
     }
