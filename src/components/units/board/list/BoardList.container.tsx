@@ -2,6 +2,7 @@ import { useQuery } from "@apollo/client";
 import { FETCH_BOARDS } from "./BoardList.queries";
 import BoardListUI from "./BoardList.presenter";
 import { useRouter } from "next/router";
+import { MouseEvent } from "react";
 
 export default function BoardList() {
     const { data } = useQuery(FETCH_BOARDS)
@@ -13,7 +14,7 @@ export default function BoardList() {
     }
 
     // 게시글 상세페이지로 이동
-    const onClickMoveToBoardDetail = (event) => {
+    const onClickMoveToBoardDetail = (event: MouseEvent<HTMLButtonElement>) => {
         router.push(`/boards/${event.target.id}`)
     }
 
