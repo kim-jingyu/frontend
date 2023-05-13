@@ -1,7 +1,8 @@
 import { MouseEvent } from 'react'
+import { IQuery } from '../../../../commons/types/generated/types'
 
 export interface IBoardListUIProps{
-    data?: any
-    onClickMoveToBoardNew: (event: MouseEvent<HTMLButtonElement>) => void
-    onClickMoveToBoardDetail: (event: MouseEvent<HTMLButtonElement>) => void
+    data?: Pick<IQuery, "fetchBoards">
+    onClickMoveToBoardNew: () => void
+    onClickMoveToBoardDetail: (event: MouseEvent<HTMLDivElement>) => void
 }
