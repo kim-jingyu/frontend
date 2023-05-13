@@ -1,6 +1,7 @@
 import { MouseEvent } from "react"
+import { IQuery } from "../../../../commons/types/generated/types"
 
 export interface IBoardDetailUIProps {
-    data?: any
+    data?: Pick<IQuery, "fetchBoard">
     onClickMoveToBoardEdit: (event: MouseEvent<HTMLButtonElement>) => void
 }
