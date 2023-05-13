@@ -16,7 +16,7 @@ export default function BoardList() {
 
     // 게시글 상세페이지로 이동
     const onClickMoveToBoardDetail = (event: MouseEvent<HTMLDivElement>) => {
-        if (event.target instanceof HTMLDivElement){
+        if (event.target instanceof HTMLDivElement){    // event.target 이 태그가 아닌 경우에는 id가 없을수도 있음 -> event.target이 무조건 Div 태그일때
             router.push(`/boards/${event.target.id}`)
         }
     }
