@@ -3,8 +3,10 @@ import {ChangeEvent, useState} from 'react'
 import {useMutation} from '@apollo/client'
 import {useRouter} from 'next/router'
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries"
+import { IBoardWriteProps } from "./BoardWrite.types"
+import { IUpdateBoardInput } from "../../../../commons/types/generated/types"
 
-export default function BoardWrite(props){
+export default function BoardWrite(props: IBoardWriteProps){
     const router = useRouter()
     const [isActive, setIsActive] = useState(false)
 
@@ -67,7 +69,7 @@ export default function BoardWrite(props){
         }
     }
 
-    const handleChangeContent = (event: ChangeEvent<HTMLInputElement>) => {
+    const handleChangeContent = (event: ChangeEvent<HTMLTextAreaElement>) => {
         const value = event.target.value
         setContent(value)
         if(value){
@@ -111,8 +113,8 @@ export default function BoardWrite(props){
 
                 router.push(`/boards/${result.data.createBoard._id}`)
                 alert("모든 내용 입력이 완료되었습니다!")
-            } catch(error: any){
-                alert(error.message)
+            } catch(error){
+                if(error instanceof Error) alert(error.message)
             }
         }
     }
@@ -129,12 +131,16 @@ export default function BoardWrite(props){
             alert("비밀번호를 입력해주세요!")
             return
         }
+        // 바뀐 것만 mutation에 넣어 보내준다.
+        const updateBoardInput: IUpdateBoardInput = {}
+        if(subject) updateBoardInput.title = subject
+        if(content) updateBoardInput.contents = content
 
         try{
-            // 바뀐 것만 mutation에 넣어 보내준다.
-            const updateBoardInput = {}
-            if(subject) updateBoardInput.title = subject
-            if(content) updateBoardInput.contents = content
+            if (typeof router.query.boardId !== "string"){
+                alert("시스템에 문제가 있습니다.")
+                return
+            }
 
             const result = await updateBoard({
                 variables: {
@@ -145,8 +151,8 @@ export default function BoardWrite(props){
                 }
             })
             router.push(`/boards/${result.data.updateBoard._id}`)
-        } catch(error: any){
-            alert(error.message)
+        } catch(error){
+            if(error instanceof Error) alert(error.message)
         }
     }
 

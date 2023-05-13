@@ -1,6 +1,7 @@
 import * as S from './BoardWrite.styles'
+import { IBoardWriteUIProps } from './BoardWrite.types'
 
-export default function BoardWriteUI(props) {
+export default function BoardWriteUI(props: IBoardWriteUIProps) {
 
     return(
         <S.Wrapper>
@@ -72,13 +73,13 @@ export default function BoardWriteUI(props) {
                 <S.RadioButton type="radio" id="image" name="radio-button" />
                 <S.RadioLabel htmlFor="image">사진</S.RadioLabel>
             </S.OptionWrapper>
+            <S.ButtonWrapper>
                 {/* 수정 게시글이면, isActive 무조건 true */}
                 <S.SubmitButton 
                     onClick={props.isEdit ? props.handleClickUpdate : props.handleClickSubmit}
                     isActive={props.isEdit ? true : props.isActive}>
                     {props.isEdit ? "수정" : "등록"}하기
                 </S.SubmitButton>
-            <S.ButtonWrapper>
             </S.ButtonWrapper>
         </S.Wrapper>
     )
