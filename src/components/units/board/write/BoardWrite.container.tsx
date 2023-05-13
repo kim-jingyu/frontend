@@ -4,7 +4,7 @@ import {useMutation} from '@apollo/client'
 import {useRouter} from 'next/router'
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries"
 import { IBoardWriteProps } from "./BoardWrite.types"
-import { IUpdateBoardInput } from "../../../../commons/types/generated/types"
+import { IUpdateBoardInput, IMutation, IMutationCreateBoardArgs, IMutationUpdateBoardArgs } from "../../../../commons/types/generated/types"
 
 export default function BoardWrite(props: IBoardWriteProps){
     const router = useRouter()
@@ -22,9 +22,9 @@ export default function BoardWrite(props: IBoardWriteProps){
     const [errorContent, setErrorContent] = useState("")
 
     // 등록 mutation
-    const [createBoard] = useMutation(CREATE_BOARD)
+    const [createBoard] = useMutation<Pick<IMutation, "createBoard">, IMutationCreateBoardArgs>(CREATE_BOARD)
     // 수정 mutation
-    const [updateBoard] = useMutation(UPDATE_BOARD)
+    const [updateBoard] = useMutation<Pick<IMutation, "updateBoard">, IMutationUpdateBoardArgs>(UPDATE_BOARD)
 
     // 이벤트 핸들러 함수
     const handleChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
@@ -109,9 +109,9 @@ export default function BoardWrite(props: IBoardWriteProps){
                         }
                     }
                 })
-                console.log(result.data.createBoard._id)
+                console.log(result.data?.createBoard._id)
 
-                router.push(`/boards/${result.data.createBoard._id}`)
+                router.push(`/boards/${result.data?.createBoard._id}`)
                 alert("모든 내용 입력이 완료되었습니다!")
             } catch(error){
                 if(error instanceof Error) alert(error.message)
@@ -150,7 +150,7 @@ export default function BoardWrite(props: IBoardWriteProps){
                     updateBoardInput  // short hand property 가능
                 }
             })
-            router.push(`/boards/${result.data.updateBoard._id}`)
+            router.push(`/boards/${result.data?.updateBoard._id}`)
         } catch(error){
             if(error instanceof Error) alert(error.message)
         }
