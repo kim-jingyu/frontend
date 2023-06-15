@@ -1,0 +1,180 @@
+*{
+    box-sizing: border-box;
+    margin-top: 0%;
+}
+
+html, body{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper{
+    width: 540px;
+    height: 960px;
+    border: 1px solid #0068FF;
+    border-radius: 20px;
+    box-shadow: 7px 7px 39px rgba(0, 104, 255, 0.25);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 60px;
+}
+
+.fixedText{
+    color: #0068FF;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.group{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.errorText{
+    color: red;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.loginInfo{
+    width: 100%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    color: #797979;
+    margin-top: 15px;
+}
+
+.loginInput{
+    width: 100%;
+    height: 50px;
+    border: 1px solid #d2d2d2;
+    border-radius: 7px;
+    padding: 10px;
+}
+
+.phone{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.phNum{
+    width: 115px;
+    height: 35px;
+    border: 1px solid #d2d2d2;
+    border-radius: 7px;
+}
+
+.auth{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.auth1{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #0068FF;
+}
+
+.authNum{
+    margin-right: 15px;
+}
+
+.authTransmit{
+    width: 120px;
+    height: 40px;
+    border: 1px solid #d2d2d2;
+    border-radius: 7px;
+    background-color: white;
+    color: #d2d2d2;
+    /* background-color: white;
+    color: #0068FF;
+    cursor: pointer; */
+}
+
+.auth2{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #0068FF;
+}
+
+.authTimer{
+    margin-right: 15px;
+}
+
+.authCompleted{
+    width: 120px;
+    height: 40px;
+    border: 1px solid #d2d2d2;
+    border-radius: 7px;
+    background-color: white;
+    color: #d2d2d2;
+    /* background-color: #0068FF;
+    color: white;
+    cursor: pointer; */
+}
+
+.region{
+    width: 100%;
+    height: 60px;
+    border: 1px solid #d2d2d2;
+    border-radius: 7px;
+    padding: 10px;
+    color: #797979;
+    cursor: pointer;
+}
+
+.genderBox{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.genderCheckBox{
+    width: 20px;
+    height: 19.95px;
+    background-color: #ebebeb;
+    border: 1px solid #d2d2d2;
+}
+
+.genderLeft{
+    margin-right: 10px;
+}
+
+.divideLine{
+    width: 100%;
+    border-top: 1px solid #d2d2d2;
+}
+
+.signUpButton{
+    width: 100%;
+    height: 75px;
+    border: 1px solid #d2d2d2;
+    background-color: white;
+    color: #d2d2d2;
+    border-radius: 10px;
+    font-size: 18px;
+}

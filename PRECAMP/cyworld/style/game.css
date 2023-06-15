@@ -1,0 +1,125 @@
+*{
+    box-sizing: border-box;
+    margin: 0px;
+}
+
+html, body{
+    width: 100%;
+    height: 100%;
+}
+
+.wrapper{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.wrapper__header{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.header__title{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.title{
+    color: #55b2e4;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.subtitle{
+    font-size: 6px;
+    padding-left: 5px;
+}
+
+.divideLine{
+    border-top: 1px solid black;
+    margin-top: 5px;
+}
+
+.game__container{
+    width: 222px;
+    height: 168px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    border: 1px solid gray;
+    border-radius: 15px;
+    background-color: #f6f6f6;
+}
+
+.game__title{
+    font-size: 15px;
+    font-weight: 900;
+}
+
+.game__subtitle{
+    font-size: 11px;
+    color: gray;
+}
+
+.word__text{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 8px;
+}
+
+.textbox{
+    width: 130px;
+    height: 24px;
+    border-radius: 5px;
+    font-size: 9px;
+}
+
+.search{
+    font-size: 11px;
+    font-weight: 700;
+    width: 38px;
+    height: 24px;
+}
+
+.word__result{
+    font-size: 11px;
+    font-weight: 700;
+    color: gray;
+}
+
+.game__lotto__number{
+    width: 130px;
+    height: 21px;
+    border: 1px solid black;
+    border-radius: 8px;
+    background-color: #ffe400;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px 8px;
+    align-items: center;
+    font-size: 10px;
+    font-weight: 700;
+    margin-top: 10px;
+    margin-bottom: 11px;
+}
+
+.game__lotto__button{
+    width: 62px;
+    height: 24px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: white;
+    font-size: 11px;
+    font-weight: 700;
+}

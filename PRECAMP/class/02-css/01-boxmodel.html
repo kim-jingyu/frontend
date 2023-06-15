@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>box-model</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        
+        div{
+            width: 80px;
+            height: 80px;
+            border: 1px solid red;
+            padding: 30px;
+        }
+
+        /* 부모 박스 */
+        .pb{
+            width: 500px;
+            height: 320px;
+            border: 1px solid blue;
+            /* flex 정렬 */
+            display: flex;
+
+            /* 행기준: row, 열기준: column */
+            flex-direction: column;
+
+            /* flex-direction 기준 수평 방향으로 자식박스 정렬 */
+            justify-content: center;
+
+            /* flex-direction 기준 수직 방향으로 자식박스 정렬 */
+            align-items: center;
+        }
+
+        .wrapper{
+            position: fixed;
+            bottom: 0px;
+        }
+
+        /* #contentBox{
+            box-sizing: content-box;
+        }
+        #borderBox{
+            box-sizing: border-box;
+        } */
+    </style>
+</head>
+<body>
+    <div class="pb">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+    <div class="wrapper">
+        <div>홈</div>
+        <div>잇츠로드</div>
+        <div>마이홈</div>
+        <div>마이</div>
+    </div>
+    <!-- <div id="contentBox">박스 1</div>
+    <div>박스 2</div>
+    <div id="borderBox">박스 3</div> -->
+</body>
+</html>
