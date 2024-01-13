@@ -1,8 +1,20 @@
-fetch("https://example.com/api")
-    .then(res => res.json())
-    .then(data => fetch(`https://example.com/api/${data.id}`))
-    .then(res => res.json())
-    .then(data => fetch(`https://example.com/api/${data.id}/details`))
-    .then(res => res.json())
-    .then(data => console.log(data))
-    .catch(error => console.error(error));
+fetch("https://api.github.com/users")
+    .then((response) => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error("Network Error");
+        }
+    })
+    .then((users) => {
+        return users.map((user) => user.login);
+    })
+    .then((ids) => {
+        return ids.join(", ");
+    })
+    .then((result) => {
+        console.log(result);
+    })
+    .catch((error) => {
+        console.error(error);
+    })
