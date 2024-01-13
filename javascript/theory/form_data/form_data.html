@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="file" id="fileInput">
+    <button type="submit" id="sendButton">전송</button>
+
+    <script>
+        const fileInput = document.querySelector("#fileInput");
+        const sendButton = document.querySelector("#sendButton");
+
+        sendButton.addEventListener("click", () => {
+            var formData = new FormData();
+            formData.append("attachedImage", fileInput.files[0]);
+        })
+    </script>
+</body>
+
+</html>
